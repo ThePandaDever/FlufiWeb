@@ -1,33 +1,40 @@
-local icns = ["pgm","pcs","plist","pprj","ptheme","pcs-interpreter","psl+","pinfo","pwarning","perror","plang","pdoc","pfiles","pdm","log-in","log-out","open","message","search","desktops","bookmark","bookmark-full","close","file","folder","save","minimise","maximise","add","minus","download","upload","info","phone","home","home-full","favorites","favorites-full","copy","paste","apps","apps-full","store","store-full","settings","settings-full","reload","share","dot-grid","multitasking","power","script","notifications","sun","moon","eye","mail","edit","thermometer","tick","accounts","rename","sort","grid","grid-full","grid-apps","grid-apps-full","bin","tags","zip","battery_0","battery_1","battery_2","battery_3","battery_4","battery_charging","dice_1","dice_2","dice_3","dice_4","dice_5","dice_6","sync","controller","microphone","headphones","headphones-full","sound","network","book","send","image","cog","locked","locked-full","permissions","square-full","circle-full","circle","cube","list","more","menu-thin","menu","more-vertical","clock","alarm-clock","stopwatch","timer","play","pause","volume-max","volume-1","volume-mute","atom","eraser","key","camera","quaver","option","pen","controller-up","controller-down","controller-right","controller-left","up","down","left","right","up-arrow","down-arrow","right-arrow","left-arrow","flag-pride","flag-progress","flag-straight","flag-asexual","flag-aroace","flag-aromantic","flag-bisexual","flag-pansexual","flag-gay","flag-lesbian","flag-cisgender","flag-agender","flag-trans","flag-genderfluid","flag-nonbinary","flag-bigender","flag-genderqueer","flag-polygender","flag-intersex","flag-demiboy","flag-demigirl","flag-demigender","flag-femboy","flag-tomboy","originOS","origin-logo","oliveOS","constellinux","windows","rotur"]
-local icnData @= data.page.icnData
-if icnData == null (
-  icnData = []
-  each i icns (
-    icnData = icnData.append([random(frame.left,frame.right),random(frame.bottom + 50,frame.top - 20),random(-10,10),random(-10,0),10])
-  )
-  data.page.icnData = icnData
-)
-for pari icnData.len (
-  local par @= icnData[pari]
-  goto par[1] par[2]
-  icon icns[pari] 1 : c#fff
-  par[1] += par[3] * delta_time * 10
-  par[2] += par[4] * delta_time * 10
-  par[3] -= par[3] * delta_time
-  par[4] -= delta_time * 20
-  par[3] += (pari * 542.5).sin() * delta_time * par[5]
-  if par[2] < frame.bottom (
-    par[4] = -par[4] + 1
-  )
-  if par[2] > frame.top (
-    par[4] = -5
-  )
-  if par[1] < frame.left (
-    par[3] = -par[3] + 1
-    par[5] = -par[5]
-  )
-  if par[1] > frame.right (
-    par[3] = -par[3] - 1
-    par[5] = -par[5]
-  )
-)
+local icns @= ["pgm","pcs","plist","pprj","ptheme","pcs-interpreter","psl+","pinfo","pwarning","perror","plang","pdoc","pfiles","pdm","log-in","log-out","open","message","search","desktops","bookmark","bookmark-full","close","file","folder","save","minimise","maximise","add","minus","download","upload","info","phone","home","home-full","favorites","favorites-full","copy","paste","apps","apps-full","store","store-full","settings","settings-full","reload","share","dot-grid","multitasking","power","script","notifications","sun","moon","eye","mail","edit","thermometer","tick","accounts","rename","sort","grid","grid-full","grid-apps","grid-apps-full","bin","tags","zip","battery_0","battery_1","battery_2","battery_3","battery_4","battery_charging","dice_1","dice_2","dice_3","dice_4","dice_5","dice_6","sync","controller","microphone","headphones","headphones-full","sound","network","book","send","image","cog","locked","locked-full","permissions","square-full","circle-full","circle","cube","list","more","menu-thin","menu","more-vertical","clock","alarm-clock","stopwatch","timer","play","pause","volume-max","volume-1","volume-mute","atom","eraser","key","camera","quaver","option","pen","controller-up","controller-down","controller-right","controller-left","up","down","left","right","up-arrow","down-arrow","right-arrow","left-arrow","flag-pride","flag-progress","flag-straight","flag-asexual","flag-aroace","flag-aromantic","flag-bisexual","flag-pansexual","flag-gay","flag-lesbian","flag-cisgender","flag-agender","flag-trans","flag-genderfluid","flag-nonbinary","flag-bigender","flag-genderqueer","flag-polygender","flag-intersex","flag-demiboy","flag-demigirl","flag-demigender","flag-femboy","flag-tomboy","originOS","origin-logo","oliveOS","constellinux","windows","rotur"]
+    local icnData @= data.page.icnData
+    if icnData == null (
+      icnData = []
+      loop icns.len * 1.5 (
+        icnData = icnData.append([random(frame.left,frame.right),random(frame.bottom + 50,frame.top - 20),random(-10,10),random(-30,30),10,random(.95,1.05),random(-360,360),random(1,5)])
+      )
+      data.page.icnData = icnData
+    )
+    for pari icnData.len (
+      local par @= icnData[pari]
+      goto par[1] par[2]
+      direction par[7]
+      icon icns[pari - 1 % icns.len + 1] par[6] : c#txtc
+      par[1] += par[3] * delta_time * 10
+      par[2] += par[4] * delta_time * 10
+      par[3] -= par[3] * delta_time * .5
+      par[4] -= delta_time * 20
+      par[3] += (pari * 542.5).sin() * delta_time * par[5]
+      par[7] += par[5] * delta_time * -5 * par[8]
+      if par[4] < -1 ( 
+        par[4] += delta_time
+      )
+      if par[2] < frame.bottom (
+        par[4] = -par[4] + random(-.1,2)
+        par[8] = -par[8] + random(-1.1,1.1)
+      )
+      if par[2] > frame.top (
+        par[4] = -20
+        par[3] = random(-10,10)
+      )
+      if par[1] < frame.left (
+        par[3] = -par[3] + 1
+        par[5] = -par[5]
+      )
+      if par[1] > frame.right (
+        par[3] = -par[3] - 1
+        par[5] = -par[5]
+      )
+    )
