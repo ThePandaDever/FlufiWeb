@@ -19,9 +19,6 @@ for pari icnData.len (
   par[4] -= delta_time * 20
   par[3] += (pari * 542.5).sin() * delta_time * par[5]
   par[7] += par[5] * delta_time * -5 * par[8]
-  if par[4] < -1 ( 
-    par[4] += delta_time
-  )
   if par[2] < frame.bottom (
     par[4] = -par[4] + random(-.1,2)
     par[8] = -par[8] + random(-1.1,1.1)
