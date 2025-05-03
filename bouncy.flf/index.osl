@@ -3,7 +3,7 @@ data.page ??= {}
 local icnData @= data.page.icnData
 if icnData == null (
   icnData = []
-  loop icns.len * 1.5 (
+  loop icns.len * 1 (
     icnData = icnData.append([random(frame.left,frame.right),random(frame.bottom + 50,frame.top - 20),random(-10,10),random(-30,30),10,random(.95,1.05),random(-360,360),random(1,5)])
   )
   data.page.icnData = icnData
