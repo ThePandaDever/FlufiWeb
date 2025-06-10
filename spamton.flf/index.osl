@@ -1,0 +1,112 @@
+
+def aton(x,y,yv,xv) (
+  return [
+    x ?? random(-200,200),
+    y ?? random(-100,200),
+    yv ?? random(-15,15),
+    xv ?? 0
+  ]
+)
+def afukineg() (
+  return [
+    random(-400,400),
+    random(-400,400),
+    random(-75,75),
+    random(-75,75),
+    null
+  ]
+)
+def particlethingmaybe(x, y) (
+  return [
+    x,
+    y,
+    0
+  ]
+)
+
+if onload (
+  spamgun = "https://raw.githubusercontent.com/ThePandaDever/e/refs/heads/main/spakjun.png"
+  ball = "https://raw.githubusercontent.com/ThePandaDever/e/refs/heads/main/pipis.png"
+  
+  tuns = []
+  leballs = []
+  goofy = []
+  
+  loop 1 (
+    tuns.append(aton())
+  )
+  
+  unrizz = 75
+  fortnite = 100
+  Fu = 0
+  WAITTTTTTTTT = random(unrizz,fortnite)
+)
+goto 0 -200
+image spamgun 500 50
+
+for i tuns.len (
+  spaghetti @= tuns[i]
+  goto spaghetti[1] spaghetti[2]
+  image spamgun 20 + random(-1,1) - abs(spaghetti[3] * .2) 20 + random(-5,5) + abs(spaghetti[3] * .4)
+  spaghetti[3] -= .2
+  spaghetti[2] += spaghetti[3] * .2
+  spaghetti[1] += spaghetti[4]
+  spaghetti[4] *= .99
+  // boungur the lemon
+  if spaghetti[2] <= -175 (
+    spaghetti[3] = random(10,30)
+  )
+  
+  for guh leballs.len (
+    astolfo @= leballs[guh]
+    if (astolfo[1] - spaghetti[1] ^ 2) + (astolfo[2] - spaghetti[2] ^ 2) < 15 ^ 2 (
+      spaghetti[3] = random(-5,5)
+      spaghetti[4] = random(-5,5)
+    )
+  )
+  if spaghetti[1] < -250 (
+    spaghetti[4] += 2
+  )
+  if spaghetti[1] > 250 (
+    spaghetti[4] -= 2
+  )
+)
+
+for egi leballs.len (
+  richard @= leballs[egi]
+  goto richard[1] richard[2]
+  direction 90
+  image ball 30
+  pointat richard[3] richard[4]
+  richard[1] += direction.sin() * 5
+  richard[2] += direction.cos() * 5
+  if (richard[1] - richard[3] ^ 2) + (richard[2] - richard[4] ^ 2) < 10 ^ 2 (
+    tuns.append(aton(richard[1], richard[2], direction.cos() * 20, direction.sin() * 5))
+    leballs.delete(egi)
+    goofy.append(particlethingmaybe(richard[1],richard[2]))
+    egi --
+  )
+  direction 90
+)
+
+for james goofy.len (
+  may @= goofy[james]
+  effect "brightness" may[3] * 2
+  effect "transparency" may[3]
+  goto may[1] may[2]
+  image ball 35 + (may[3] * .25 ^ 2 * .01)
+  may[3] += 5
+  effect "brightness" 0
+  effect "transparency" 0
+  if may[3] > 100 (
+    goofy.delete(james)
+    james --
+  )
+)
+
+if Fu % WAITTTTTTTTT == 0 (
+  leballs.append(afukineg())
+  WAITTTTTTTTT = random(unrizz,fortnite)
+)
+
+Fu ++
